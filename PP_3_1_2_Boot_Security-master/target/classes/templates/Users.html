@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>All USERS</title>
+</head>
+<body>
+<h2> All USERS </h2>
+
+<br>
+<br>
+
+<table th:border="1">
+    <tr>
+        <th>id</th>
+        <th>Name</th>
+        <th>Age</th>
+        <th>City</th>
+        <th>operation</th>
+
+    </tr>
+    <div th:each="user : ${userList}">
+        <tr>
+            <td th:utext="${user.getId}"></td>
+            <td th:utext="${user.getName()}"></td>
+            <td th:utext="${user.getAge()}"></td>
+            <td th:utext="${user.getCity()}"></td>
+
+            <td>
+                <form method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">
+                    <input type="submit" value="Update">
+<!--                <a th:href="@{/admin/{id}/edit(id=${user.getId()})}">update</a>-->
+                </form>
+            </td>
+            <td>
+                <form th:method="DELETE" th:action="@{/admin/{id}(id=${user.getId()})}">
+                    <input type="submit" value="delete"/>
+                </form>
+            </td>
+<!--            <td>-->
+<!--                <a th:href="@{/updateInfo(id=${user.getId()})}" th:text="UPDATE">user</a>-->
+<!--                <a th:href="@{/deleteUser(id=${user.getId()})}" th:text="DELETE">user</a>-->
+<!--            </td>-->
+        </tr>
+    </div>
+</table>
+<br>
+<input type="button" value="CREATE NEW USER"
+       onclick="window.location.href = 'new'"/>
+<!--<a href="user/new">CREATE NEW USER</a>-->
+
+<input align="rigth" type="button" value="logout"
+       onclick="window.location.href = '/logout'"/>
+</body>
+</html>
