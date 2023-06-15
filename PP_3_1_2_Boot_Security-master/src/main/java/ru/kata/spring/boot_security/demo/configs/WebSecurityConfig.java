@@ -64,17 +64,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         return daoAuthenticationProvider;
     }
 
-//    @Bean
-//    public AuthenticationManager authenticationManager(HttpSecurity http, PasswordEncoder passwordEncoder
-//            , UserDetailsService userDetailService) throws Exception {
-//        return http.getSharedObject(AuthenticationManagerBuilder.class)
-//                .userDetailsService(userDetailService)
-//                .passwordEncoder(passwordEncoder)
-//                .and()
-//                .build();
-//    }
-
-
     // аутентификация inMemory
 //    @Bean
 //    @Override

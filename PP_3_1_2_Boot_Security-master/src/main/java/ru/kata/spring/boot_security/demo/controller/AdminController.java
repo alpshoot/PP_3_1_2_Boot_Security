@@ -36,17 +36,6 @@ public class AdminController {
         return "Users";
     }
 
-//    public String testList(Model model, Authentication authentication){
-//        User user = userService.findByUsername(authentication.getName());
-//        model.addAttribute("user", user);
-//        model.addAttribute("userList",userService.getListFromService());
-//        Collection<Role> roles = roleService.getAllRoles();
-//        model.addAttribute("roles", roles);
-//        //новый юзер
-//        User newuser = new User();
-//        model.addAttribute("user", user);
-//        return "Users";
-//}
     @GetMapping("/new")
     public String newUser(Model model) {
         User user = new User();
@@ -55,26 +44,12 @@ public class AdminController {
         model.addAttribute("roles", roles);
         return "new";
     }
-//@RequestMapping("/new")
-//public String addNewUser(Model model) {
-//    User user = new User();
-//    model.addAttribute("user", user);
-//    return "new";
-//}
 
     @PostMapping("/")
     public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin/";
     }
-
-//    @RequestMapping("/")
-//    public String saveUser(@ModelAttribute("newuser") User user,
-//                           @RequestParam(required = false, name = "role_id") Long[] role_id) {
-//        user.setRoles(roleService.getAllRoles());
-//        userService.saveUser(user);
-//        return "redirect:/admin/";
-//    }
 
     @GetMapping("/{id}/edit")
     public String edit(Model model,@PathVariable("id") Long id) {
