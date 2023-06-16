@@ -16,6 +16,8 @@
         <th>Name</th>
         <th>Age</th>
         <th>City</th>
+        <th>Email</th>
+        <th>operation</th>
         <th>operation</th>
 
     </tr>
@@ -25,6 +27,7 @@
             <td th:utext="${user.getName()}"></td>
             <td th:utext="${user.getAge()}"></td>
             <td th:utext="${user.getCity()}"></td>
+            <td th:utext="${user.getEmail()}"></td>
 
             <td>
                 <form method="GET" th:action="@{/admin/{id}/edit(id=${user.getId()})}">

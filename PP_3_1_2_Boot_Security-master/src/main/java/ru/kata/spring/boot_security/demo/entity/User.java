@@ -25,20 +25,26 @@ public class User implements UserDetails {
     @Column(name = "city")
     private String city;
 
+    @Column(name = "email", unique = true)
+    private String email;
+
     @Column(name = "password")
     private String password;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
+//    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"),inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Collection<Role> roles;
 
     public User() {
     }
 
-    public User(String name, int age, String city) {
+    public User(String name, int age, String city, String email, String password, Collection<Role> roles) {
         this.name = name;
         this.age = age;
         this.city = city;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
     }
 
     @Override
@@ -52,7 +58,7 @@ public class User implements UserDetails {
 
     @Override
     public String getUsername() {
-        return getName();
+        return getEmail();
     }
 
     @Override
@@ -73,6 +79,14 @@ public class User implements UserDetails {
     @Override
     public boolean isEnabled() {
         return true;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public void setPassword(String password) {
@@ -119,12 +133,4 @@ public class User implements UserDetails {
         this.city = city;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "name='" + name + '\'' +
-                ", age=" + age +
-                ", city='" + city + '\'' +
-                '}';
-    }
 }

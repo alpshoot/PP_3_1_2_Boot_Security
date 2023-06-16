@@ -31,17 +31,17 @@ public class UserServiceImpl implements UserService, UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public User findByUsername (String name) {
-        return userRepository.findByUsername(name);
+    public User findByUsername (String email) {
+        return userRepository.findByUsername(email);
     }
 
     @Override
-    public UserDetails loadUserByUsername(String name) throws UsernameNotFoundException {
-        User user = findByUsername(name);
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        User user = findByUsername(email);
         if (user == null) {
-            throw new UsernameNotFoundException(String.format("User `%s` not found", name));
+            throw new UsernameNotFoundException(String.format("User `%s` not found", email));
         }
-        return new org.springframework.security.core.userdetails.User(user.getName(),
+        return new org.springframework.security.core.userdetails.User(user.getEmail(),
                 user.getPassword(), mapRolesToAuthority(user.getRoles()));
     }
 

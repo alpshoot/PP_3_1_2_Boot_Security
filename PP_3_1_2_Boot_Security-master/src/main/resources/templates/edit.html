@@ -18,6 +18,9 @@
   <label for="city">City: </label>
   <input type="text" th:field="*{city}" id="city"/>
   <br/>
+    <label for="email">Email: </label>
+    <input type="text" th:field="*{email}" id="email"/>
+    <br/>
   <label for="password">password: </label>
   <input type="text" th:field="*{password}" id="password"/>
   <br/>
@@ -28,6 +31,12 @@
       <option selected="selected" value="2">ADMIN</option>
     </select>
   </label>
+
+<!--  <label>Enter role:-->
+<!--    <input type="checkbox" id="roles"> <label for="roles">USER</label>-->
+<!--    <input type="checkbox" id="roles"> <label for="roles">ADMIN</label>-->
+<!--  </label>-->
+
 
   <br/>
   <input type="submit" value="Edit User"/>
