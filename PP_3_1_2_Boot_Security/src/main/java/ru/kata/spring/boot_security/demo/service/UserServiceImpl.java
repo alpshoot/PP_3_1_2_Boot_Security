@@ -67,12 +67,16 @@ public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Transactional
     public void updateUser(User user) {
-        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        if (!user.getPassword().equals(getUserById(user.getId()).getPassword())) {
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+        }
         userRepository.save(user);
     }
 
     @Transactional
     public void deleteUser(Long id) {
-        userRepository.delete(userRepository.findById(id).get());
+        if (userRepository.findById(id).isPresent()) {
+            userRepository.deleteById(id);
+        }
     }
 }
